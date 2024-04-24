@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1>Hello WORD!!</h1>
+    <a href="./register">Inscription</a>
 </body>
 </html>
