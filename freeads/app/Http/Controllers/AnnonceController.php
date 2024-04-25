@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Annonce;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+
 // use App\Http\Controllers\Auth;
 
 
@@ -14,8 +16,10 @@ class AnnonceController extends Controller
         return view('postAnnonce');
     }
 
-    public function annoncePage():View{
-        return view('showAnnonce');
+    public function annoncePage(){
+        $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id');
+        // dd($allArticle);
+        return view('showAnnonce')->with('allArticle',$allArticle);
 
     }
 
@@ -30,7 +34,16 @@ class AnnonceController extends Controller
             'prix' => $request->price,
         ]);
 
-        // return redirect()->route('showAnnonce');
+        return Redirect::route('showAnnonce');
+    }
 
+    public function editAnnonce($id){
+        // dd($id);
+        return view('postAnnonce/{$id}');
+    }
+    
+    public function deleteAnnonce($id){
+        DB::delete('delete from annonces where id = ?',[$id]);
+        return Redirect::route('showAnnonce');
     }
 }
