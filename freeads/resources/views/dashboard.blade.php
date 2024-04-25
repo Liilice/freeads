@@ -12,6 +12,7 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+            <a href="{{ url('/postAnnonce') }}">Postuler une annonce</a>
         </div>
     </div>
 </x-app-layout>
