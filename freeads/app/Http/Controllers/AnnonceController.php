@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use App\Models\Annonce;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 // use App\Http\Controllers\Auth;
 
@@ -38,12 +39,27 @@ class AnnonceController extends Controller
     }
 
     public function editAnnonce($id){
-        // dd($id);
-        return view('postAnnonce/{$id}');
+        // $annonce = DB::select('select * from annonces where id = ?',[$id]);
+        $annonce = Annonce::find($id);
+        // dd($annonce);
+        // return view('editAnnonce')->with('annonce',$annonce);
+        return view('editAnnonce', compact('annonce'));
+
     }
     
     public function deleteAnnonce($id){
         DB::delete('delete from annonces where id = ?',[$id]);
         return Redirect::route('showAnnonce');
+    }
+
+    public function editAnnonceForm(Request $request,$id){
+        $annonce = Annonce::find($id);
+        $annonce->titre = $request->tittle;
+        $annonce->photographie = $request->image;
+        $annonce->prix = $request->price;
+        $annonce->description = $request->content;
+        $annonce->save();
+
+        return  Redirect::route('showAnnonce', compact('annonce'));
     }
 }
