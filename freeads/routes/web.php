@@ -21,4 +21,6 @@ require __DIR__.'/auth.php';
 Route::get('/postAnnonce', [AnnonceController::class, 'postAnnonce'] );
 Route::post('/postAnnonce', [AnnonceController::class, 'create'] );
 
-Route::get('/showAnnonce', [AnnonceController::class, 'annoncePage'] );
+Route::get('/showAnnonce', [AnnonceController::class, 'annoncePage'] )->name('showAnnonce');
+Route::get('/editAnnonce/{id}', [AnnonceController::class, 'editAnnonce'] )->name('article.edit');
+Route::get('/deleteAnnonce/{id}', [AnnonceController::class, 'deleteAnnonce'] )->name('article.delete');

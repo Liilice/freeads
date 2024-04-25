@@ -11,6 +11,7 @@
         <input type="text" name="tittle" id="tittle" placeholder="titre">
         <input type="text" name="image" id="image" placeholder="image">
         <!-- <input type="file" name="image" id="image"> -->
+        <!-- <input type="file" multiple> -->
         <input type="number" name="price" id="price" placeholder="prix">
         <textarea name="content" id="content"  placeholder="description"></textarea>
         <button>Poster</button>
