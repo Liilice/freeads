@@ -1,18 +1,11 @@
 <?php
 
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'showIndex'] );
-// function () {return view('welcome');}
-
-// Route::get('/register', [UtilisateurController::class, 'create']);
-// Route::post('/register', [UtilisateurController::class, 'store']);
-// Route::get('/login', [UtilisateurController::class, 'login']);
-
-// Auth::routes(['verify'=>true]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -25,3 +18,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/postAnnonce', [AnnonceController::class, 'postAnnonce'] );
+Route::post('/postAnnonce', [AnnonceController::class, 'create'] );
+
+Route::get('/showAnnonce', [AnnonceController::class, 'annoncePage'] );
