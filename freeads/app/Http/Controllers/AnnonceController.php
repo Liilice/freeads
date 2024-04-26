@@ -19,22 +19,26 @@ class AnnonceController extends Controller
 
     public function annoncePage(){
         $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id');
-        // dd($allArticle);
         return view('showAnnonce')->with('allArticle',$allArticle);
-
     }
 
     public function create(Request $request){
         $user = auth()->user()->id;
-
+        $images = [];
+        if($files = $request->file('image')){
+            foreach ($files as $file){
+                $file->move(public_path('image'),$file->getClientOriginalName());
+                $images[]= "image/".$file->getClientOriginalName();
+            }
+        }
         Annonce::create([
             'id_user' => $user,
             'titre' => $request->tittle,
             'description' => $request->content,
-            'photographie' => $request->image,
+            // 'photographie' => $request->image,
+            'photographie' => implode('|', $images),
             'prix' => $request->price,
         ]);
-
         return Redirect::route('showAnnonce');
     }
 
