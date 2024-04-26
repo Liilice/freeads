@@ -14,8 +14,13 @@
             <li>{{$article->name}}</li>
             <li>{{$article->titre}}</li>
             <li>{{$article->description}}</li>
-            <li><img src="{{$article->photographie}}" alt="logo"></li>
-            <!-- <li>{{$article->photographie}}</li> -->
+            @php
+                $arrayImage = explode("|",$article->photographie);
+            @endphp
+            @foreach($arrayImage as $image)
+                <!-- <img src="{{ asset('image/$image') }}" alt="logo"> -->
+                <img src="{{URL::to($image)}}" alt="">
+            @endforeach
             <li>{{$article->prix}}</li>
             @if ($article->id_user)
                 @if ( $article->id_user ==  Auth::user()->id )
@@ -25,5 +30,6 @@
             @endif
         </ul>
     @endforeach    
+    <a href="{{ url('/dashboard') }}">PAGE ACCUEIL</a>
 </body>
 </html>
