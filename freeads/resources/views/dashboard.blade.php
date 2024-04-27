@@ -18,6 +18,8 @@
                     <a href="{{ url('/filtrageAnnonce') }}"><button>Recherche par filtre</button></a>
                     <br>
                     <a href="{{ url('/showAnnonce') }}"><button>Voir les annonces</button></a>
+                    <br>
+                    <a href="{{ url('/annonceInterressant') }}"><button>Voir les annonces interessantes</button></a>
                 </div>
             </div>       
         </div>

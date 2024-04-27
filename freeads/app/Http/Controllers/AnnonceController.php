@@ -83,6 +83,26 @@ class AnnonceController extends Controller
     public function filtrageAnnonceResult(Request $request){
         $result = Annonce::where('prix', '>', $request->price)->get()->toArray();
         return view('filtrageAnnonce', compact('result'));
+    }
 
+    public function showAnnonceOrderASC(){
+        $result = DB::table('annonces')
+                    ->orderBy('created_at', 'desc')
+                    ->get()
+                    ->toArray();
+        // dd($result);
+        return view('showAnnonceAsc', compact('result'));
+    }
+    
+    public function showAnnonceOrderASCPage():View{
+        return view('showAnnonceAsc');
+    }
+
+    public function annonceInterressant(){
+        $result = DB::table('annonces')
+                    ->orderBy('prix', 'asc')
+                    ->get()
+                    ->toArray();
+        return view('annonceInterressant', compact('result'));
     }
 }

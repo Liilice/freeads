@@ -34,3 +34,7 @@ Route::post('/searchAnnonce', [AnnonceController::class, 'searchAnnonceResult'] 
 Route::get('/filtrageAnnonce', [AnnonceController::class, 'filtrageAnnonce'] );
 Route::post('/filtrageAnnonce', [AnnonceController::class, 'filtrageAnnonceResult'] );
 
+Route::get('/showAnnonceAsc', [AnnonceController::class, 'showAnnonceOrderASCPage'] );
+Route::get('/showAnnonce/asc', [AnnonceController::class, 'showAnnonceOrderASC'] );
+
+Route::get('/annonceInterressant', [AnnonceController::class, 'annonceInterressant'] );

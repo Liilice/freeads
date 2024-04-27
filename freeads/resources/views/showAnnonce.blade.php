@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>ALL ANNONCE</h1>
+    <a href="{{ url('/showAnnonce/asc') }}"><button>Trier par les plus récents</button></a>
     @foreach ($allArticle as $article) 
         <ul>
             <li>ArticleId : {{$article->id}}</li>
@@ -29,7 +30,23 @@
                 @endif
             @endif
         </ul>
-    @endforeach    
+    @endforeach
+
+    @if (isset($result))
+        @foreach ($result as $article) 
+            <li>{{$article['id']}}</li>  
+            <li>{{$article['id_user']}}</li> 
+            <li>{{$article['titre']}}</li>
+            <li>{{$article['description']}}</li>
+            <li>{{$article['prix']}}</li>
+            @php
+                $arrayImage = explode("|",$article['photographie']);
+            @endphp
+            @foreach($arrayImage as $image)
+                <img src="{{URL::to($image)}}" alt="{{$image}}">
+            @endforeach
+        @endforeach   
+    @endif
     <a href="{{ url('/dashboard') }}">PAGE ACCUEIL</a>
 </body>
 </html>
