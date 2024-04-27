@@ -27,3 +27,7 @@ Route::get('/editAnnonce/{id}', [AnnonceController::class, 'editAnnonce'] )->nam
 Route::post('/editAnnonce/{id}', [AnnonceController::class, 'editAnnonceForm'] );
 
 Route::get('/deleteAnnonce/{id}', [AnnonceController::class, 'deleteAnnonce'] )->name('article.delete');
+
+Route::get('/searchAnnonce', [AnnonceController::class, 'searchAnnonce'] );
+Route::post('/searchAnnonce', [AnnonceController::class, 'searchAnnonceResult'] );
+
