@@ -16,7 +16,7 @@
                 $arrayImage = explode("|",$article->photographie);
             @endphp
             @foreach($arrayImage as $image)
-                <img src="{{URL::to($image)}}" alt="{{$image}}">
+                <img src="{{asset($image)}}" alt="{{$image}}">
             @endforeach
             <li>{{$article->prix}}</li>
             <br>
