@@ -66,4 +66,13 @@ class AnnonceController extends Controller
 
         return  Redirect::route('showAnnonce', compact('annonce'));
     }
+
+    public function searchAnnonce():View{
+        return view('searchAnnonce');
+    }
+
+    public function searchAnnonceResult(Request $request){
+        $result = Annonce::where('titre', 'like', '%'.$request->search.'%')->get()->toArray();
+        return view('searchAnnonce', compact('result'));
+    }
 }

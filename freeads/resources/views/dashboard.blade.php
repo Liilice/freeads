@@ -10,9 +10,13 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
+                    <br>
+                    <a href="{{ url('/postAnnonce') }}"><button>Postuler une annonce</button></a>
+                    <br>
+                    <a href="{{ url('/searchAnnonce') }}"><button>Rechercher une annonce</button></a>
                 </div>
-            </div>
-            <a href="{{ url('/postAnnonce') }}">Postuler une annonce</a>
+            </div>       
         </div>
     </div>
+    
 </x-app-layout>
