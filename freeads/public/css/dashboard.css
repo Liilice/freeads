@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+    background: linear-gradient(to right, #95bbe9, #f1b8d2);
+}
+.container {
+    min-height: 100vh;
+}
+nav {
+    display: flex;
+}
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    fill: currentColor;
+    color: rgb(104, 107, 113);
+}
+.responsive {
+    display: none;
+}
+.div_container {
+    width: 100%;
+}
+.flex {
+    flex: none;
+}
+.hamburger {
+    display: none;
+}
+.relative {
+    position: relative;
+}
+.relative div button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid transparent;
+    color: rgb(73, 75, 79);
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 1.25rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.svg svg {
+    fill: currentColor;
+    color: rgb(73, 75, 79);
+    height: 2rem;
+    width: 2rem;
+}
