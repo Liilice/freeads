@@ -14,6 +14,10 @@
                     <a href="{{ url('/postAnnonce') }}"><button>Postuler une annonce</button></a>
                     <br>
                     <a href="{{ url('/searchAnnonce') }}"><button>Rechercher une annonce</button></a>
+                    <br>
+                    <a href="{{ url('/filtrageAnnonce') }}"><button>Recherche par filtre</button></a>
+                    <br>
+                    <a href="{{ url('/showAnnonce') }}"><button>Voir les annonces</button></a>
                 </div>
             </div>       
         </div>

@@ -75,4 +75,14 @@ class AnnonceController extends Controller
         $result = Annonce::where('titre', 'like', '%'.$request->search.'%')->get()->toArray();
         return view('searchAnnonce', compact('result'));
     }
+
+    public function filtrageAnnonce():View{
+        return view('filtrageAnnonce');
+    }
+
+    public function filtrageAnnonceResult(Request $request){
+        $result = Annonce::where('prix', '>', $request->price)->get()->toArray();
+        return view('filtrageAnnonce', compact('result'));
+
+    }
 }
