@@ -31,3 +31,6 @@ Route::get('/deleteAnnonce/{id}', [AnnonceController::class, 'deleteAnnonce'] )-
 Route::get('/searchAnnonce', [AnnonceController::class, 'searchAnnonce'] );
 Route::post('/searchAnnonce', [AnnonceController::class, 'searchAnnonceResult'] );
 
+Route::get('/filtrageAnnonce', [AnnonceController::class, 'filtrageAnnonce'] );
+Route::post('/filtrageAnnonce', [AnnonceController::class, 'filtrageAnnonceResult'] );
+
