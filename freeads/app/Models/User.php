@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Conversation;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +43,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function conversations(){
+        return Conversation::where(function($query){
+            return $query->where('to', $this->id)->orWhere('from', $this->id);
+        });
+    }
+
+    public function getConversation(){
+        return $this->conversations()->get();
     }
 }

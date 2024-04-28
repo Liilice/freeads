@@ -18,7 +18,7 @@ class AnnonceController extends Controller
     }
 
     public function annoncePage(){
-        $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id');
+        $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id order by created_at desc');
         return view('showAnnonce')->with('allArticle',$allArticle);
     }
 

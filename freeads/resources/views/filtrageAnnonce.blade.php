@@ -34,6 +34,13 @@
                 @foreach($arrayImage as $image)
                     <img src="{{URL::to($image)}}" alt="{{$image}}">
                 @endforeach
+                <li></li>
+                @if ($article->id_user)
+                    @if ( $article->id_user ==  Auth::user()->id )
+                        <a href="{{ route('article.edit', ['id' => $article->id]) }}"><button>modifier</button></a>
+                        <a href="{{ route('article.delete', ['id' => $article->id]) }}"><button>supprimer</button></a>
+                    @endif
+                @endif
                 </ul>
             </div>
             @endforeach   
