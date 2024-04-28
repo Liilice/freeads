@@ -35,6 +35,8 @@
                 @if ( $article->id_user ==  Auth::user()->id )
                     <a href="{{ route('article.edit', ['id' => $article->id]) }}"><button>modifier</button></a>
                     <a href="{{ route('article.delete', ['id' => $article->id]) }}"><button>supprimer</button></a>
+                @else
+                    <a href="{{ route('new.convo', ['id' => $article->id_user]) }}"><button>Envoyer un message</button></a>
                 @endif
             @endif
         </ul>

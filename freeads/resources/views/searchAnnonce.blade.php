@@ -37,6 +37,13 @@
                             <img src="{{asset($image)}}" alt="{{$image}}">
                         @endforeach
                     <!-- </div> -->
+                    <li></li>
+                    @if ($article->id_user)
+                        @if ( $article->id_user ==  Auth::user()->id )
+                            <a href="{{ route('article.edit', ['id' => $article->id]) }}"><button>modifier</button></a>
+                            <a href="{{ route('article.delete', ['id' => $article->id]) }}"><button>supprimer</button></a>
+                        @endif
+                    @endif
                     </ul>
                 </div>
             @endforeach   
