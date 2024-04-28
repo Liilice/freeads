@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/showAnnonce.css') }}" >
+    <script src="{{ asset('js/burger.js') }}"></script>
+    <title>Annonce</title>
 </head>
 <body>
-    <h1>ALL ANNONCE</h1>
+    @include('layouts.navigation')
+    <h1>Toute les annonces</h1>
     <a href="{{ url('/showAnnonce/asc') }}"><button>Trier par les plus récents</button></a>
+    <br>
+    <div class="parent">
     @foreach ($allArticle as $article) 
+        <div class="border">
         <ul>
-            <li>ArticleId : {{$article->id}}</li>
-            <li>{{$article->id_user}}</li>
-            <li>{{$article->name}}</li>
-            <li>{{$article->titre}}</li>
-            <li>{{$article->description}}</li>
+            <!-- <li>ArticleId : {{$article->id}}</li> -->
+            <!-- <li>{{$article->id_user}}</li> -->
+            <li>Nom : {{$article->name}}</li>
+            <li>Titre : {{$article->titre}}</li>
+            <li>Description : {{$article->description}}</li>
+            <li>Prix : {{$article->prix}}€</li>
             @php
                 $arrayImage = explode("|",$article->photographie);
             @endphp
@@ -22,7 +30,7 @@
                 <!-- <img src="{{ asset('image/$image') }}" alt="logo"> -->
                 <img src="{{URL::to($image)}}" alt="">
             @endforeach
-            <li>{{$article->prix}}</li>
+            <li></li>
             @if ($article->id_user)
                 @if ( $article->id_user ==  Auth::user()->id )
                     <a href="{{ route('article.edit', ['id' => $article->id]) }}"><button>modifier</button></a>
@@ -30,8 +38,9 @@
                 @endif
             @endif
         </ul>
+        </div>
     @endforeach
-
+   </div>
     @if (isset($result))
         @foreach ($result as $article) 
             <li>{{$article['id']}}</li>  
