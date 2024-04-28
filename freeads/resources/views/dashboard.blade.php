@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                     <br>
-                    <a href="{{ url('/postAnnonce') }}"><button>Postuler une annonce</button></a>
+                    <a href="{{ url('/postAnnonce') }}"><button>Poster une annonce</button></a>
                     <br>
                     <a href="{{ url('/searchAnnonce') }}"><button>Rechercher une annonce</button></a>
                     <br>
