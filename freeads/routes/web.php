@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ConvocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'showIndex'] );
@@ -27,6 +28,8 @@ Route::get('/editAnnonce/{id}', [AnnonceController::class, 'editAnnonce'] )->nam
 Route::post('/editAnnonce/{id}', [AnnonceController::class, 'editAnnonceForm'] );
 
 Route::get('/deleteAnnonce/{id}', [AnnonceController::class, 'deleteAnnonce'] )->name('article.delete');
+Route::get('/ajoutConvo/{id}', [ConvocationController::class, 'newConvo'] )->name('new.convo');
+
 
 Route::get('/searchAnnonce', [AnnonceController::class, 'searchAnnonce'] );
 Route::post('/searchAnnonce', [AnnonceController::class, 'searchAnnonceResult'] );
@@ -38,3 +41,4 @@ Route::get('/showAnnonceAsc', [AnnonceController::class, 'showAnnonceOrderASCPag
 Route::get('/showAnnonce/asc', [AnnonceController::class, 'showAnnonceOrderASC'] );
 
 Route::get('/annonceInterressant', [AnnonceController::class, 'annonceInterressant'] );
+Route::get('/mesConversation',[ConvocationController::class, 'index']);

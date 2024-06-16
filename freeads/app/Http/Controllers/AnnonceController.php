@@ -18,7 +18,7 @@ class AnnonceController extends Controller
     }
 
     public function annoncePage(){
-        $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id');
+        $allArticle = DB::select('select annonces.*, users.name from annonces join users on annonces.id_user = users.id order by created_at desc');
         return view('showAnnonce')->with('allArticle',$allArticle);
     }
 
@@ -59,11 +59,17 @@ class AnnonceController extends Controller
     public function editAnnonceForm(Request $request,$id){
         $annonce = Annonce::find($id);
         $annonce->titre = $request->tittle;
-        $annonce->photographie = $request->image;
+        $images = [];
+        if($files = $request->image){
+            foreach ($files as $file){
+                $file->move(public_path('image'),$file->getClientOriginalName());
+                $images[]= "image/".$file->getClientOriginalName();
+            }
+        }
+        $annonce->photographie = implode('|', $images);
         $annonce->prix = $request->price;
         $annonce->description = $request->content;
         $annonce->save();
-
         return  Redirect::route('showAnnonce', compact('annonce'));
     }
 
@@ -72,7 +78,12 @@ class AnnonceController extends Controller
     }
 
     public function searchAnnonceResult(Request $request){
-        $result = Annonce::where('titre', 'like', '%'.$request->search.'%')->get()->toArray();
+        $result = DB::table('annonces')
+                    ->select('annonces.*','users.name')
+                    ->join('users', 'annonces.id_user', '=', 'users.id')
+                    ->where('titre', 'like', '%'.$request->search.'%')
+                    ->get()
+                    ->toArray();
         return view('searchAnnonce', compact('result'));
     }
 
@@ -81,12 +92,20 @@ class AnnonceController extends Controller
     }
 
     public function filtrageAnnonceResult(Request $request){
-        $result = Annonce::where('prix', '>', $request->price)->get()->toArray();
+        // $result = Annonce::where('prix', '>', $request->price)->get()->toArray();
+        $result= DB::table('annonces')
+                    ->select('annonces.*','users.name')
+                    ->join('users', 'annonces.id_user', '=', 'users.id')
+                    ->where('prix', '>', $request->price)
+                    ->get()
+                    ->toArray();
         return view('filtrageAnnonce', compact('result'));
     }
 
     public function showAnnonceOrderASC(){
         $result = DB::table('annonces')
+                    ->select('annonces.*','users.name')
+                    ->join('users', 'annonces.id_user', '=', 'users.id')
                     ->orderBy('created_at', 'desc')
                     ->get()
                     ->toArray();
@@ -100,6 +119,8 @@ class AnnonceController extends Controller
 
     public function annonceInterressant(){
         $result = DB::table('annonces')
+                    ->select('annonces.*','users.name')
+                    ->join('users', 'annonces.id_user', '=', 'users.id')
                     ->orderBy('prix', 'asc')
                     ->get()
                     ->toArray();
